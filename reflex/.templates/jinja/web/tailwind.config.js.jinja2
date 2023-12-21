@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+const { createPlugin } = require("windy-radix-palette");
+const colors = createPlugin();
+
 module.exports = {
 	content: {{content|json_dumps}},
 	theme: {{theme|json_dumps}},
@@ -6,6 +9,7 @@ module.exports = {
 	{% for plugin in plugins %}
 		require({{plugin|json_dumps}}),
 	{% endfor %}
+		colors.plugin,
 	],
 	{% if presets is defined %}
 	presets: [
